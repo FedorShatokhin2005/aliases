@@ -40,6 +40,11 @@ git fetch pixel/cmn $1 && git merge --allow-unrelated-histories -s ours --no-com
 git fetch pixel/extra $1 && git merge --allow-unrelated-histories -s ours --no-commit FETCH_HEAD && git read-tree --prefix=techpack/audio -u FETCH_HEAD && git commit --no-edit;
 }
 
+function regen() {
+make ARCH=arm64 $1_defconfig
+cp -v .config arch/arm64/configs/$1_defconfig
+}
+
 function pixel_update_kernel() {
 git fetch pixel/fw-api $1;
 git merge -X subtree=drivers/staging/fw-api FETCH_HEAD --no-edit;
