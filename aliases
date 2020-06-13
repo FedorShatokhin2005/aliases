@@ -32,6 +32,7 @@ cp -v .config arch/arm64/configs/$1_defconfig
 
 alias pick='git cherry-pick';
 alias epick='git cherry-pick -e';
+alias npick='git cherry-pick --no-commit'
 alias commit='git commit'
 
 function abort() {
