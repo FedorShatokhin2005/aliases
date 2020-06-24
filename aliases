@@ -87,18 +87,10 @@ for i in {0..3..1}; do
 done
 }
 
-function clean_build() {
-	source build/envsetup.sh
-	export USE_CCACHE=1
-	mka clean -j$(nproc --all)
-	mka clobber -j$(nproc --all)
-	lunch aosp_$1.mk
-	mka bacon -j$(nproc --all)
+function buildkernel(){
+python3 ../PublishBot/kernel.py
 }
 
-function fast_build() {
-	source build/envsetup.sh
-	export USE_CCACHE=1
-	lunch aosp_$1.mk
-	mka bacon -j$(nproc --all)
+function buildlineage(){
+python3 ../PublishBot/lineage.py
 }
