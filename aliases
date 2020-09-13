@@ -42,7 +42,8 @@ git fetch pixel/extra $1 && git merge --allow-unrelated-histories -s ours --no-c
 
 function regen() {
 make ARCH=arm64 $1_defconfig
-cp -v .config arch/arm64/configs/$1_defconfig
+make ARCH=arm64 savedefconfig
+mv defconfig arch/arm64/configs/$1_defconfig
 }
 
 function pixel_update_kernel() {
